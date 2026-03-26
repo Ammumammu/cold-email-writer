@@ -1,226 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cold Email Pro</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0f172a;
-            color: #ffffff;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-        }
-        .container {
-            background-color: #1e293b;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            max-width: 600px;
-            width: 100%;
-            text-align: center;
-        }
-        h1, h2 {
-            margin-top: 0;
-        }
-        .button {
-            background-color: #6366f1;
-            color: #ffffff;
-            border: none;
-            padding: 1rem 2rem;
-            font-size: 1rem;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-top: 1rem;
-            transition: background-color 0.3s;
-        }
-        .button:hover {
-            background-color: #5550bd;
-        }
-        input[type="text"], input[type="email"] {
-            width: 100%;
-            padding: 0.75rem;
-            margin-top: 0.5rem;
-            border-radius: 4px;
-            border: 1px solid #374151;
-            background-color: #374151;
-            color: #ffffff;
-        }
-        textarea {
-            width: 100%;
-            height: 100px;
-            padding: 0.75rem;
-            margin-top: 0.5rem;
-            border-radius: 4px;
-            border: 1px solid #374151;
-            background-color: #374151;
-            color: #ffffff;
-        }
-        .viral {
-            font-size: 0.8rem;
-            margin-top: 1rem;
-            color: #94a3b8;
-        }
-        .paywall {
-            text-align: center;
-        }
-        .paywall h2 {
-            color: #ef4444;
-        }
-        .paywall .button {
-            margin-top: 0.5rem;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cold Email Pro — Write emails that convert</title>
+<meta name="description" content="Write emails that convert. Free to start, no account needed. Powered by AI.">
+<meta property="og:title" content="Cold Email Pro">
+<meta property="og:description" content="Write emails that convert">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<script>
+  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]);t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+  posthog.init('phc_pg2BYO7sa22tvbyefuV1eFpatr5P2SOt45BrjuQQv9l',{api_host:'https://app.posthog.com'});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --purple: #7c3aed; --purple-light: #a78bfa; --dark: #0f172a;
+    --card: #1e293b; --border: #334155; --text: #e2e8f0; --muted: #94a3b8; --green: #10b981;
+  }
+  body { background: var(--dark); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; min-height: 100vh; }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 14px 28px; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: rgba(15,23,42,.96); backdrop-filter: blur(12px); z-index: 100; }
+  .logo { font-weight: 700; font-size: 18px; color: var(--purple-light); }
+  .hero { max-width: 760px; margin: 64px auto 0; padding: 0 24px; text-align: center; }
+  h1 { font-size: clamp(28px, 5vw, 48px); font-weight: 800; line-height: 1.15; margin-bottom: 16px; }
+  .sub { font-size: 18px; color: var(--muted); margin-bottom: 36px; line-height: 1.6; }
+  .tool-box { max-width: 680px; margin: 0 auto; padding: 0 24px 80px; }
+  textarea, input[type=text] { width: 100%; padding: 14px 16px; background: var(--card); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: 15px; font-family: inherit; outline: none; resize: vertical; transition: border-color .2s; }
+  textarea:focus, input[type=text]:focus { border-color: var(--purple-light); }
+  .btn { width: 100%; padding: 14px; border: none; border-radius: 10px; font-size: 16px; font-weight: 700; cursor: pointer; transition: opacity .15s, transform .1s; margin-top: 12px; }
+  .btn:hover { opacity: .9; }
+  .btn:active { transform: scale(.98); }
+  .btn-primary { background: linear-gradient(135deg, var(--purple), #4f46e5); color: #fff; }
+  .btn-secondary { background: var(--card); color: var(--muted); border: 1px solid var(--border); font-size: 14px; padding: 11px; }
+  .output-box { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin-top: 20px; min-height: 120px; font-size: 15px; line-height: 1.7; white-space: pre-wrap; }
+  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; max-width: 760px; margin: 48px auto; padding: 0 24px; }
+  .feature { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px; }
+  .feature-emoji { font-size: 24px; margin-bottom: 8px; }
+  .feature-title { font-weight: 600; margin-bottom: 6px; }
+  .feature-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+  .paywall { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.8); z-index: 200; align-items: center; justify-content: center; }
+  .paywall.open { display: flex; }
+  .paywall-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 36px; max-width: 440px; width: 90%; text-align: center; }
+  .paywall-card h2 { font-size: 24px; font-weight: 800; margin-bottom: 10px; }
+  .paywall-card p { color: var(--muted); margin-bottom: 24px; font-size: 15px; }
+  .pay-btn { display: block; background: linear-gradient(135deg, var(--purple), #4f46e5); color: #fff; padding: 14px; border-radius: 10px; font-weight: 700; font-size: 16px; text-decoration: none; margin-bottom: 10px; transition: opacity .15s; }
+  .pay-btn:hover { opacity: .9; }
+  .pay-secondary { font-size: 13px; color: var(--muted); text-decoration: underline; cursor: pointer; }
+  .uses-badge { display: inline-block; background: rgba(124,58,237,.15); color: var(--purple-light); padding: 4px 10px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-bottom: 24px; }
+  .loading { display: inline-block; width: 18px; height: 18px; border: 2px solid rgba(255,255,255,.3); border-top-color: #fff; border-radius: 50%; animation: spin .7s linear infinite; vertical-align: middle; margin-right: 8px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .copy-btn { background: none; border: 1px solid var(--border); color: var(--muted); padding: 6px 12px; border-radius: 6px; font-size: 12px; cursor: pointer; margin-top: 12px; float: right; }
+  .copy-btn:hover { border-color: var(--purple-light); color: var(--purple-light); }
+  .attr { text-align: center; color: var(--border); font-size: 12px; padding: 24px; }
+  .attr a { color: var(--muted); }
+</style>
 </head>
 <body>
-<div id="root"></div>
-<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-<script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
-<script type="text/babel">
-    const CONFIG = {
-        GROQ_KEY: 'CONFIG.GROQ_KEY',
-        SUPABASE_ANON_KEY: 'your-supabase-anon-key',
-        SUPABASE_URL: 'https://your-supabase-url.supabase.co'
-    };
 
-    const posthog = {
-        capture: (event) => {
-            console.log('PostHog event:', event);
-        }
-    };
+<nav>
+  <span class="logo">Cold Email Pro</span>
+  <a href="#try" style="background:var(--purple);color:#fff;padding:8px 18px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;">Try Free →</a>
+</nav>
 
-    const supabase = {
-        from: (table) => ({
-            insert: (data) => {
-                console.log('Supabase insert:', table, data);
-            }
-        })
-    };
+<div class="hero">
+  <h1>Write emails that convert</h1>
+  <p class="sub">Built for sales team member sending cold emails. Free to start — 3 uses, no account needed.</p>
+  <div id="uses-badge" class="uses-badge">3 free uses remaining</div>
+</div>
 
-    const AI_ENDPOINT = 'https://api.groq.com/v1/inference';
+<div class="features">
+  <div class="feature">
+    <div class="feature-emoji">👍</div>
+    <div class="feature-title">**Personalization Module**</div>
+    <div class="feature-desc">Allows users to personalize cold emails with custom variables, enabling tailored messages that address recipients by name and reflect their specific interests or behaviors.</div>
+  </div>
+  <div class="feature">
+    <div class="feature-emoji">📊</div>
+    <div class="feature-title">**Email Tracker**</div>
+    <div class="feature-desc">Provides real-time tracking and analytics for cold emails, enabling users to monitor open rates, click-through rates, and response rates, helping optimize email campaigns for better performance.</div>
+  </div>
+  <div class="feature">
+    <div class="feature-emoji">💡</div>
+    <div class="feature-title">**AI-Powered Email Generator**</div>
+    <div class="feature-desc">Utilizes AI algorithms to generate high-converting cold emails, analyzing successful email templates and adapting them to specific industries, businesses, or use cases to increase the likelihood of successful responses.</div>
+  </div>
+</div>
 
-    const Landing = ({ openTool }) => (
-        <div className="container">
-            <h1>Cold Emails Fail</h1>
-            <h2>Sales teams use AI for instant results</h2>
-            <p>Type prompt (5 sec) → AI suggests email (10 sec) → Get response (instant)</p>
-            <button className="button" onClick={openTool}>Write Smarter</button>
-        </div>
-    );
+<div class="tool-box" id="try">
+  <textarea id="user-input" rows="5" placeholder="Subject line: Leveraging Your Expertise in Digital Marketing to Elevate Our E-commerce Presence."></textarea>
+  <button class="btn btn-primary" id="generate-btn" onclick="generate()">
+    Generate with AI →
+  </button>
+  <div class="output-box" id="output" style="display:none;">
+    <button class="copy-btn" onclick="copyOutput()">Copy</button>
+    <span id="output-text"></span>
+    <div class="attr">Generated by <a href="https://agent-os-seven.vercel.app" target="_blank">Cold Email Pro</a></div>
+  </div>
+</div>
 
-    const Tool = ({ openPaywall, usesRemaining }) => {
-        const [prompt, setPrompt] = React.useState('');
-        const [email, setEmail] = React.useState('');
-        const [loading, setLoading] = React.useState(false);
+<div class="paywall" id="paywall">
+  <div class="paywall-card">
+    <h2>You've used your 3 free uses 🎉</h2>
+    <p>Clearly useful. Get unlimited access.</p>
+    <a href="https://buy.stripe.com/test_5kQeV6fXY7ky8TYbATg7e0d" class="pay-btn" onclick="track('payment_clicked',{method:'stripe'})">
+      Get Unlimited — $19 one-time →
+    </a>
+    <div style="margin:12px 0;color:var(--border);font-size:12px;">── or ──</div>
+    <div id="email-capture">
+      <p style="font-size:13px;margin-bottom:10px;">Get 3 more free uses — enter your email:</p>
+      <div style="display:flex;gap:8px;">
+        <input type="text" id="email-input" placeholder="you@example.com" style="flex:1;padding:10px;font-size:14px;">
+        <button onclick="captureEmail()" style="background:var(--purple);color:#fff;border:none;padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer;white-space:nowrap;">Get 3 Free</button>
+      </div>
+    </div>
+    <div id="email-success" style="display:none;color:var(--green);font-size:14px;margin-top:10px;">✓ 3 more free uses added!</div>
+  </div>
+</div>
 
-        const handleGenerateEmail = async () => {
-            setLoading(true);
-            posthog.capture('tool_used');
-            const response = await fetch(AI_ENDPOINT, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${CONFIG.GROQ_KEY}`
-                },
-                body: JSON.stringify({
-                    model: 'llama3-70b',
-                    prompt: prompt,
-                    max_tokens: 200
-                })
-            });
-            const data = await response.json();
-            setEmail(data.choices[0].text || 'Failed to generate email.');
-            setLoading(false);
-            if (usesRemaining <= 1) {
-                openPaywall();
-            }
-        };
+<script>
+const PRODUCT = 'Cold Email Pro';
+const PRODUCT_SLUG = 'cold-email-writer';
+const SYSTEM_PROMPT = "\"Generate highly engaging, persuasive, and optimized email copy that drives conversions and boosts sales.\"";
+const SUPABASE_URL = 'https://hprhgfhylkykkawszgba.supabase.co';
+const SUPABASE_ANON = 'sb_publishable_-nQFIe4lTMWbqi6U0mgWwQ_rcvssvD-';
+const FREE_LIMIT = 3;
+let useCount = parseInt(localStorage.getItem('uc_' + PRODUCT_SLUG) || '0');
+let extraUses = parseInt(localStorage.getItem('eu_' + PRODUCT_SLUG) || '0');
 
-        return (
-            <div className="container">
-                <h1>Write Your Cold Email</h1>
-                <input type="text" placeholder="Enter your prompt here..." value={prompt} onChange={(e) => setPrompt(e.target.value)} />
-                <button className="button" onClick={handleGenerateEmail} disabled={loading}>
-                    {loading ? 'Generating...' : 'Generate Email'}
-                </button>
-                {email && (
-                    <div>
-                        <textarea value={email} readOnly />
-                        <div className="viral">Generated by Cold Email Pro — cold-email-writer.vercel.app</div>
-                    </div>
-                )}
-            </div>
-        );
-    };
+function track(event, props = {}) {
+  if (window.posthog) posthog.capture(event, { product: PRODUCT, ...props });
+}
 
-    const Paywall = ({ captureEmail }) => {
-        const [email, setEmail] = React.useState('');
-        const [submitted, setSubmitted] = React.useState(false);
+function updateBadge() {
+  const remaining = Math.max(0, FREE_LIMIT + extraUses - useCount);
+  const badge = document.getElementById('uses-badge');
+  if (badge) badge.textContent = remaining + ' free use' + (remaining === 1 ? '' : 's') + ' remaining';
+}
 
-        const handleSubmit = async () => {
-            posthog.capture('email_captured');
-            captureEmail(email);
-            setSubmitted(true);
-        };
+async function generate() {
+  const input = document.getElementById('user-input').value.trim();
+  if (!input) return;
 
-        return (
-            <div className="paywall container">
-                <h2>Free limit reached!</h2>
-                <p>Get 3 more free uses by entering your email below.</p>
-                {!submitted ? (
-                    <>
-                        <input type="email" placeholder="Enter your email..." value={email} onChange={(e) => setEmail(e.target.value)} />
-                        <button className="button" onClick={handleSubmit} disabled={!email}>Get Free Uses</button>
-                    </>
-                ) : (
-                    <p>Thank you! 3 free uses have been added to your account.</p>
-                )}
-                <p>Or <a href="https://buy.stripe.com/test_5kQeV6fXY7ky8TYbATg7e0d" target="_blank" rel="noopener noreferrer" onClick={() => posthog.capture('payment_clicked')}>subscribe now</a> for $9/mo to get unlimited access.</p>
-            </div>
-        );
-    };
+  if (useCount >= FREE_LIMIT + extraUses) {
+    track('paywall_shown');
+    document.getElementById('paywall').classList.add('open');
+    return;
+  }
 
-    const App = () => {
-        const [view, setView] = React.useState('landing');
-        const [usesRemaining, setUsesRemaining] = React.useState(2);
-        const [freeUses, setFreeUses] = React.useState(0);
+  const btn = document.getElementById('generate-btn');
+  btn.innerHTML = '<span class="loading"></span>Generating...';
+  btn.disabled = true;
 
-        React.useEffect(() => {
-            posthog.capture('tool_opened');
-        }, []);
+  try {
+    const r = await fetch('/api/groq', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        system: SYSTEM_PROMPT,
+        messages: [{ role: 'user', content: input }],
+        max_tokens: 800,
+        temperature: 0.8,
+      }),
+    });
+    const data = await r.json();
+    const text = data.choices?.[0]?.message?.content || 'Sorry, no output generated. Please try again.';
+    document.getElementById('output-text').textContent = text;
+    document.getElementById('output').style.display = 'block';
 
-        const openTool = () => {
-            setView('tool');
-        };
+    useCount++;
+    localStorage.setItem('uc_' + PRODUCT_SLUG, useCount);
+    updateBadge();
+    track('tool_used', { use_number: useCount });
 
-        const openPaywall = () => {
-            posthog.capture('free_limit_hit');
-            setView('paywall');
-        };
+    if (useCount >= FREE_LIMIT + extraUses) {
+      setTimeout(() => {
+        track('free_limit_hit');
+        document.getElementById('paywall').classList.add('open');
+      }, 1500);
+    }
+  } catch (e) {
+    document.getElementById('output-text').textContent = 'Error: ' + e.message + '. Please try again.';
+    document.getElementById('output').style.display = 'block';
+  } finally {
+    btn.innerHTML = 'Generate Again →';
+    btn.disabled = false;
+  }
+}
 
-        const captureEmail = (email) => {
-            supabase.from('leads').insert({ email, free_uses: 3 });
-            setFreeUses(freeUses + 3);
-        };
+function copyOutput() {
+  const text = document.getElementById('output-text').textContent;
+  navigator.clipboard.writeText(text);
+  const btn = document.querySelector('.copy-btn');
+  btn.textContent = 'Copied!';
+  setTimeout(() => btn.textContent = 'Copy', 1500);
+}
 
-        return (
-            <div>
-                {view === 'landing' && <Landing openTool={openTool} />}
-                {view === 'tool' && <Tool openPaywall={openPaywall} usesRemaining={usesRemaining + freeUses} />}
-                {view === 'paywall' && <Paywall captureEmail={captureEmail} />}
-            </div>
-        );
-    };
+async function captureEmail() {
+  const email = document.getElementById('email-input').value.trim();
+  if (!email.includes('@')) return;
+  try {
+    const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+    await sb.from('leads').insert({ email, product: PRODUCT_SLUG, context: 'paywall_extra_uses', source: document.referrer || 'direct', created_at: new Date().toISOString() });
+  } catch(e) {}
+  extraUses += 3;
+  localStorage.setItem('eu_' + PRODUCT_SLUG, extraUses);
+  track('email_captured', { context: 'paywall_extra_uses' });
+  document.getElementById('email-capture').style.display = 'none';
+  document.getElementById('email-success').style.display = 'block';
+  document.getElementById('paywall').classList.remove('open');
+  updateBadge();
+}
 
-    ReactDOM.render(<App />, document.getElementById('root'));
+document.getElementById('paywall').addEventListener('click', function(e) {
+  if (e.target === this) this.classList.remove('open');
+});
+
+document.getElementById('user-input').addEventListener('keydown', function(e) {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') generate();
+});
+
+track('tool_opened');
+updateBadge();
 </script>
 </body>
 </html>
